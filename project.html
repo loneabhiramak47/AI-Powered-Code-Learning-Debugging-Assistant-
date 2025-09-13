@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Code Learning & Debugging Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f4f6f9; }
+    #editor {
+      width: 100%; 
+      height: 300px; 
+      border: 1px solid #ccc;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .output-box {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 10px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="container py-4">
+  <h2 class="mb-3 text-center">AI-Powered Code Learning & Debugging Assistant</h2>
+
+  <!-- Code Editor -->
+  <label for="editor" class="form-label fw-bold">Write your code:</label>
+  <textarea id="editor">print("Hello World")</textarea>
+
+  <div class="mt-3">
+    <button class="btn btn-primary me-2" onclick="analyzeCode()">🔍 Analyze Code</button>
+    <button class="btn btn-success" onclick="runCode()">▶️ Run Code</button>
+  </div>
+
+  <!-- Analysis Output -->
+  <div class="mt-4">
+    <h5>Analysis Output:</h5>
+    <div id="analysis-output" class="output-box">No analysis yet...</div>
+  </div>
+
+  <!-- Run Output -->
+  <div class="mt-4">
+    <h5>Run Output:</h5>
+    <div id="run-output" class="output-box">No output yet...</div>
+  </div>
+
+  <script>
+    function analyzeCode() {
+      const code = document.getElementById("editor").value;
+
+      // fake AI analysis response
+      const fakeAnalysis = {
+        issues: code.includes("while True") ? ["⚠️ Infinite loop detected"] : [],
+        suggestions: code.includes("print") 
+          ? ["Good use of print for output!", "Try adding comments to explain your code."] 
+          : ["Consider adding output to see results."]
+      };
+
+      document.getElementById("analysis-output").innerText = JSON.stringify(fakeAnalysis, null, 2);
+    }
+
+    function runCode() {
+      const code = document.getElementById("editor").value;
+
+      // fake execution output
+      let result = {};
+      if (code.includes("print(")) {
+        result = { stdout: "Hello, kavya mam\n", stderr: "", exit_code: 0 };
+      } else {
+        result = { stdout: "", stderr: "NameError: name not defined", exit_code: 1 };
+      }
+
+      document.getElementById("run-output").innerText = JSON.stringify(result, null, 2);
+    }
+  </script>
+</body>
+</html>
